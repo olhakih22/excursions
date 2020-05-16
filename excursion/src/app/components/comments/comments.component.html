@@ -1,0 +1,51 @@
+<div>
+  <div class="form">
+    <form #sold="ngForm" (ngSubmit)="success()">
+      <mat-form-field appearance="fill">
+        <mat-label>Ведіть свої ініціали</mat-label>
+        <label>
+          <input name="name" [name] required matInput [(ngModel)]="comment.name">
+        </label>
+      </mat-form-field>
+      <br>
+      <mat-form-field  appearance="fill">
+        <mat-label>Оцінка</mat-label>
+        <mat-select required [(value)]="selected">
+          <mat-option (click)="getIndex(i)" *ngFor="let op of type; index as i;" [value]="i" >{{op}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Ваш відгук</mat-label>
+        <label>
+          <textarea [(ngModel)]="comment.massage " type="text" name="massage" matInput></textarea>
+        </label>
+      </mat-form-field>
+      <button [disabled]="sold.invalid || diss" mat-raised-button>Створити</button>
+    </form>
+  </div>
+  <div class="comments">
+    <div class="singleComm" *ngFor="let comm of AllComments | sort ">
+      <div class="info">
+        <div>
+          <img width="50" height="50" src="https://emanong-ph.com/api/people/avatar/0" alt="">
+          <span class="name">
+          {{comm.name}}
+        </span>
+        </div>
+        <div class="time">
+          <span>Оцінка: {{comm.rating}}</span>
+          <br>
+          <span>Час: {{comm.date | date: 'short'}}</span>
+        </div>
+      </div>
+      <h4 *ngIf="comm.massage.length > 0">
+        Відгук
+      </h4>
+      <p>
+        {{comm.massage}}
+      </p>
+
+    </div>
+  </div>
+</div>
