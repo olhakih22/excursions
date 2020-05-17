@@ -1,0 +1,45 @@
+<h1 class="text-center">{{excursion.name}}</h1>
+<div class="singleEx">
+  <img src="{{excursion.img}}" alt="">
+  <p>
+    <span>Ціна: {{excursion.prise}} грн.</span>
+    <span>Максимум містць: {{excursion.freeSits}}</span>
+    <span>Дата: {{excursion.date | date}}</span>
+  </p>
+  <div class="forma">
+    <form #sold="ngForm" (ngSubmit)="success()">
+      <h2 class="text-center">Забронювати поїздку</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>Ведіть свої ініціали</mat-label>
+        <label>
+          <input name="name" [name]  required matInput [(ngModel)]="zakaz.name">
+        </label>
+      </mat-form-field>
+      <br>
+      <hr>
+      <mat-form-field>
+        <mat-label>Виберіть дату</mat-label>
+        <input required name="date" [(ngModel)]="zakaz.date" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+      <hr>
+      <br>
+      <h3>Виберіть кількість місць</h3>
+      <mat-slider name="seats" [(ngModel)]="zakaz.seats"
+        thumbLabel
+        [displayWith]="formatLabel"
+        min="1"
+        max="{{excursion.freeSits}}"></mat-slider>
+      <hr>
+      <mat-form-field appearance="fill">
+        <mat-label>Ведіть свою пошту</mat-label>
+          <label>
+          <input name="email"  email required matInput [(ngModel)]="zakaz.email">
+        </label>
+      </mat-form-field>
+      <button [disabled]="sold.invalid || diss" mat-raised-button>Забронювати поїздку</button>
+      <p *ngIf="diss">Ми забронювали для вас місце!</p>
+    </form>
+  </div>
+</div>

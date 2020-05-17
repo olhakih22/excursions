@@ -1,0 +1,41 @@
+<div class="sort">
+  <div class="div">
+    <mat-form-field >
+      <mat-label>Вибери місто</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option (click)="getCitiId(-1)" value="option0">Усі</mat-option>
+        <mat-option (click)="getCitiId(i)" *ngFor="let name of city; index as i;" value="{{i}}">{{name.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p *ngIf="i === -1">Ваш вибір: Усі</p>
+    <p *ngIf="i != -1">Ваш вибір: {{city[i].name}}</p>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Вибери тип</mat-label>
+      <mat-select [(value)]="selected2">
+        <mat-option (click)="getCitiIdTwo( ii)" *ngFor="let type of types;index as ii;" value="{{ii}}">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>Ваш вибір: {{types[twoI]}}</p>
+  </div>
+</div>
+<div class="allCity row">
+  <div *ngFor="let city of city | sortCity: [i]: [types[twoI]]" class="col-sm-6">
+    <div class="oneCity">
+      <div class="imgCity">
+        <img src="{{city.img}}" alt="">
+      </div>
+      <div class="infoCity">
+        <h2>Місто {{city.name}}</h2>
+        <div>
+          <span>Кількість екскурсій: {{city.excursion.length}}</span>
+        </div>
+        <button (click)="routeCity(city.id)" mat-stroked-button color="primary">Перейти</button>
+      </div>
+    </div>
+
+  </div>
+</div>

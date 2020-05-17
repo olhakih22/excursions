@@ -1,1 +1,16 @@
-<p>filials works!</p>
+
+<div>
+  <div *ngFor="let fill of filial" class="singleFilial">
+    <h2 class="text-center">{{fill.name}}</h2>
+    <div class="fillImg">
+      <img src="{{fill.img}}" alt="">
+    </div>
+    <div class="fillInfo">
+      <span>Телефон: <a href="tell:{{fill.tell}}">{{fill.tell}}</a></span>
+      <span>Email: <a href="mailto:{{fill.email}}">{{fill.email}}</a></span>
+    </div>
+    <h3 class="text-center">Коротко про нас</h3>
+    <p>{{fill.about}}</p>
+    <hr>
+  </div>
+</div>

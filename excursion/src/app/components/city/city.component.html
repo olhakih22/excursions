@@ -1,0 +1,23 @@
+<div class="infoOfThisCity">
+  <h2>Екскурсії міста {{city.name}}</h2>
+
+  <div *ngFor="let ex of city.excursion" class="ex">
+    <div class="singleEx">
+      <img src="{{ex.img}}" alt="">
+    </div>
+    <div class="singleExInfo">
+      <h2>{{ex.name}}</h2>
+      <div class="miniInfo">
+        <span>Ціна: {{ex.prise}} грн.</span>
+        <span>Доступко містць: {{ex.freeSits}}</span>
+        <span>Дата: {{ex.date | date}}</span>
+      </div>
+      <div class="types">
+        <span *ngFor="let tupe of ex.allType">{{tupe.types}}</span>
+      </div>
+      <button (click)="routeId(ex.id)" mat-stroked-button color="primary">Вибрати</button>
+
+    </div>
+  </div>
+</div>
+

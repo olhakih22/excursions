@@ -24,6 +24,25 @@ import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import {SortPipe} from "./pipes/sort.pipe";
 import {SpliceTextPipe} from "./pipes/splice-text.pipe";
+import { CityComponent } from './components/city/city.component';
+
+
+
+import { LOCALE_ID } from '@angular/core';
+
+
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+import { SingleExcursionComponent } from './components/single-excursion/single-excursion.component';
+import {MatSliderModule} from "@angular/material/slider";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {SortCityPipe} from "./pipes/sort-city.pipe";
+
+
+
+// the second parameter 'ru' is optional
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
@@ -44,7 +63,11 @@ import {SpliceTextPipe} from "./pipes/splice-text.pipe";
     SortPipe,
     SortPipe,
     SpliceTextPipe,
-    SpliceTextPipe
+    SpliceTextPipe,
+    CityComponent,
+    SingleExcursionComponent,
+    SortCityPipe,
+    SortCityPipe
   ],
   imports: [
     HttpClientModule,
@@ -58,9 +81,12 @@ import {SpliceTextPipe} from "./pipes/splice-text.pipe";
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'ru' }, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
