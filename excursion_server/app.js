@@ -28,6 +28,11 @@ const connect = mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopolog
     .catch(err => console.log(err));
 
 app.use('/api/comments', require('./routes/massedgeRout'));
+app.use('/api/personal', require('./routes/personal'));
+app.use('/api/filial', require('./routes/filial'));
+app.use('/api/city', require('./routes/city'));
+app.use('/api/excursion', require('./routes/excursion'));
+app.use('/api/zakaz', require('./routes/zakaz'));
 
 app.listen(3000, () => {
     console.log(3000);
